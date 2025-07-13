@@ -42,6 +42,12 @@
       background-color: #00ffff;
       color: #111;
     }
+    .redacted {
+      background-color: #333;
+      color: #333;
+      padding: 0 6px;
+      border-radius: 2px;
+    }
   </style>
 </head>
 <body>
@@ -49,23 +55,35 @@
   <h1>📁 Agent KLID – Aktivní složka operativce</h1>
 
   <div class="file-box">
+    <div style="text-align: center;">
+      <img src="klid.png" alt="Agent KLID" style="width: 160px; opacity: 0.85; margin-bottom: 20px;">
+    </div>
+
     <div class="label">STATUS OPERATIVCE:</div>
     <p><strong>KLID</strong> je autorizovaný operativec působící v zóně B-7. Stav: <span style="color:lightgreen;">AKTIVNÍ</span></p>
+
+    <div class="label">OSOBNÍ ÚDAJE (KLASIFIKOVÁNO):</div>
+    <p>
+      <strong>Jméno:</strong> KLID (kódové)<br>
+      <strong>Identifikační číslo:</strong> UNS-793-B/7A<br>
+      <strong>Věk:</strong> <span class="redacted">TAJNÝ</span><br>
+      <strong>Pohlaví:</strong> <span class="redacted">NEZVEŘEJNĚNO</span><br>
+      <strong>Barva očí:</strong> <span class="redacted">TAJNÁ</span><br>
+      <strong>Rozpoznávací znak:</strong> Šátek s nápisem "KLID JE SVOBODA"
 
     <div class="label">LOKACE OVĚŘENA:</div>
     <div id="location">Načítání polohy...</div>
 
     <div class="label">POZNÁMKY:</div>
     <p>
-      Operativec KLID byl přiřazen ke zvláštnímu pozorování oblasti Bílá a zajištění komunikačního ticha ve vrcholových pásmech.
-      Všechna zařízení přihlášená pod tímto profilem jsou automaticky monitorována pro ochranu integrity mise.
+      Agent KLID byl přiřazen k operaci v horské zóně Beskydy. Specializace: infiltrace, sledování, zajištění informací.
+      Kontakt s UNS probíhá přes zakódovaný kanál C3. Složka podléhá dohledu odboru Vnitřní Rovnováhy.
     </p>
 
     <a class="btn" href="folder.html">⬅️ Zpět do složky operace</a>
   </div>
 
   <script>
-    // IP location via IPAPI
     fetch('https://ipapi.co/json/')
       .then(res => res.json())
       .then(data => {
@@ -78,7 +96,6 @@
         `;
         document.getElementById('location').innerHTML = info;
 
-        // Try to get GPS location
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(position => {
             const lat = position.coords.latitude.toFixed(6);
