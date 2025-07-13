@@ -29,6 +29,14 @@
       padding: 6px 12px;
       margin-top: 10px;
     }
+    button {
+      margin-top: 15px;
+      padding: 6px 14px;
+      background-color: #333;
+      color: white;
+      border: 1px solid #555;
+      cursor: pointer;
+    }
     .warning {
       color: red;
       font-weight: bold;
@@ -43,14 +51,28 @@
 
   <div class="box">
     <p>Zadejte přístupový kód pro zónu B-7:</p>
-    <input type="password" placeholder="••••••••••">
-    <p>⬤ Stav spojení: <span class="warning">Nestabilní</span></p>
+    <input type="password" id="password" placeholder="••••••••••">
+    <br>
+    <button onclick="checkPassword()">Potvrdit</button>
+    <p style="margin-top: 20px;">⬤ Stav spojení: <span class="warning">Nestabilní</span></p>
     <p>⬤ Kód jednotky: <strong>UNS-BESKYDY-042</strong></p>
   </div>
 
   <p style="margin-top: 50px; font-style: italic;">
     „Klid je svoboda. Pořádek je bezpečí.“
   </p>
+
+  <script>
+    function checkPassword() {
+      const correct = "b7access"; // ← change this password
+      const input = document.getElementById("password").value;
+      if (input === correct) {
+        window.location.href = "access.html";
+      } else {
+        window.location.href = "denied.html";
+      }
+    }
+  </script>
 
 </body>
 </html>
