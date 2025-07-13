@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <title>UNS – Přístup Agenta</title>
+  <style>
+    body {
+      background-color: #0d0d0d;
+      color: #e0e0e0;
+      font-family: 'Courier New', monospace;
+      text-align: center;
+      padding: 80px 20px;
+    }
+    input {
+      background-color: #222;
+      color: #fff;
+      border: 1px solid #444;
+      padding: 10px;
+      margin-top: 20px;
+      font-size: 18px;
+      width: 240px;
+    }
+    button {
+      padding: 10px 20px;
+      margin-top: 20px;
+      background-color: #111;
+      color: #00ffff;
+      border: 1px solid #00ffff;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #00ffff;
+      color: #111;
+    }
+    #result {
+      margin-top: 20px;
+      color: red;
+      font-size: 16px;
+    }
+    footer {
+      margin-top: 100px;
+      font-style: italic;
+      color: #888;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🔒 UNS – Agenturní přístup</h1>
+  <p>Zadejte osobní kód:</p>
+
+  <input type="password" id="code" placeholder="••••••••••">
+  <br>
+  <button onclick="verify()">Přihlásit</button>
+
+  <p id="result"></p>
+
+  <footer>„Klid je svoboda. Pořádek je bezpečí.“</footer>
+
+  <script>
+    function verify() {
+      const input = document.getElementById("code").value.trim().toLowerCase();
+      const routes = {
+        "re1832": "kuchtik.html",
+        "ir5971": "dozorce.html",
+        "mi2408": "ledvinka.html",
+        "pa7649": "bezec.html",
+        "ma0335": "rybar.html",
+        "za8814": "kocicak.html",
+        "ef3267": "sanitak.html",
+        "ka9075": "traktorista.html",
+        "ka6681": "malir.html",
+        "la4129": "gulas.html",
+        "kr1583": "skrivan.html",
+        "on7790": "zeli.html",
+        "ma6302": "archivar.html"
+      };
+
+      if (routes[input]) {
+        window.location.href = routes[input];
+      } else {
+        document.getElementById("result").textContent = "Neplatný kód. Zkuste to znovu.";
+      }
+    }
+  </script>
+
+</body>
+</html>
