@@ -34,12 +34,26 @@
       background-color: #ff3333;
       color: #111;
     }
+
+    /* Glitch animation for final warning */
+    .glitch {
+      animation: glitch 0.6s infinite;
+    }
+
+    @keyframes glitch {
+      0% { text-shadow: 2px 0 red, -2px 0 cyan; }
+      20% { text-shadow: -2px 0 red, 2px 0 cyan; }
+      40% { text-shadow: 2px 2px red, -2px -2px cyan; }
+      60% { text-shadow: -2px -2px red, 2px 2px cyan; }
+      80% { text-shadow: 0 0 red, 0 0 cyan; }
+      100% { text-shadow: 2px 0 red, -2px 0 cyan; }
+    }
   </style>
 </head>
 <body>
 
   <h1>⛔ PŘÍSTUP ODEPŘEN</h1>
-  <p>Neautorizovaný kód. Pokus o přístup byl zaznamenán.</p>
+  <p id="message">Neautorizovaný kód. Pokus o přístup byl zaznamenán.</p>
 
   <div class="counter">
     Neúspěšné pokusy o přístup: <span id="failCount">0</span>
@@ -48,11 +62,31 @@
   <a class="btn" href="index.html">🔁 Zkusit znovu</a>
 
   <script>
-    // Increment failed attempt counter using localStorage
-    const count = localStorage.getItem('unsFailCount') || 0;
-    const newCount = parseInt(count) + 1;
-    localStorage.setItem('unsFailCount', newCount);
-    document.getElementById('failCount').textContent = newCount;
+    const messages = [
+      "Neautorizovaný kód. Pokus o přístup byl zaznamenán.",
+      "Opakovaný neúspěšný pokus. Váš přístup je sledován.",
+      "Třetí pokus zamítnut. Tento incident bude nahlášen.",
+      "Překračujete limity bezpečnostního protokolu.",
+      "Systém se přepíná do režimu sledování.",
+      "Další pokus bude mít následky. Upozornění operátorovi.",
+      "Identifikace podezřelého subjektu zahájena.",
+      "Přístup zablokován. Váš pohyb je monitorován.",
+      "Ticho doporučeno. UNS naslouchá.",
+      "Poslední varování. Zanechte pokusu o vniknutí.",
+      "!!! NEZNÁMÁ ANOMÁLIE ZJIŠTĚNA – PŘEPÍNÁM NA NOUZOVÝ KÓD !!!"
+    ];
+
+    const count = parseInt(localStorage.getItem('unsFailCount') || "0") + 1;
+    localStorage.setItem('unsFailCount', count);
+    document.getElementById('failCount').textContent = count;
+
+    const msgElement = document.getElementById("message");
+    const message = messages[Math.min(count - 1, messages.length - 1)];
+    msgElement.textContent = message;
+
+    if (count >= 10) {
+      msgElement.classList.add("glitch");
+    }
   </script>
 
 </body>
