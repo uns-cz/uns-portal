@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <title>Agent KLID – Přístupová složka</title>
+  <style>
+    body {
+      background-color: #0d0d0d;
+      color: #e0e0e0;
+      font-family: 'Courier New', monospace;
+      padding: 40px;
+    }
+    h1 {
+      text-align: center;
+      color: #00ffcc;
+    }
+    .file-box {
+      background-color: #1a1a1a;
+      border: 1px solid #333;
+      padding: 30px;
+      max-width: 800px;
+      margin: 40px auto;
+      box-shadow: 0 0 10px rgba(0,255,255,0.15);
+    }
+    .label {
+      color: #00ffff;
+      font-weight: bold;
+      margin-top: 20px;
+      text-transform: uppercase;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 10px 20px;
+      background-color: #111;
+      color: #00ffff;
+      border: 1px solid #00ffff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .btn:hover {
+      background-color: #00ffff;
+      color: #111;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>📁 Agent KLID – Aktivní složka operativce</h1>
+
+  <div class="file-box">
+    <div class="label">STATUS OPERATIVCE:</div>
+    <p><strong>KLID</strong> je autorizovaný operativec působící v zóně B-7. Stav: <span style="color:lightgreen;">AKTIVNÍ</span></p>
+
+    <div class="label">LOKACE OVĚŘENA:</div>
+    <div id="location">Načítání polohy...</div>
+
+    <div class="label">POZNÁMKY:</div>
+    <p>
+      Operativec KLID byl přiřazen ke zvláštnímu pozorování oblasti Bílá a zajištění komunikačního ticha ve vrcholových pásmech.
+      Všechna zařízení přihlášená pod tímto profilem jsou automaticky monitorována pro ochranu integrity mise.
+    </p>
+
+    <a class="btn" href="folder.html">⬅️ Zpět do složky operace</a>
+  </div>
+
+  <script>
+    // IP location via IPAPI
+    fetch('https://ipapi.co/json/')
+      .then(res => res.json())
+      .then(data => {
+        let info = `
+          <strong>IP:</strong> ${data.ip}<br>
+          <strong>Město:</strong> ${data.city}<br>
+          <strong>Region:</strong> ${data.region}<br>
+          <strong>Země:</strong> ${data.country_name}<br>
+          <strong>ISP:</strong> ${data.org}<br><br>
+        `;
+        document.getElementById('location').innerHTML = info;
+
+        // Try to get GPS location
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(position => {
+            const lat = position.coords.latitude.toFixed(6);
+            const lon = position.coords.longitude.toFixed(6);
+            document.getElementById('location').innerHTML += `<strong>GPS Souřadnice:</strong> ${lat}, ${lon}`;
+          }, () => {
+            document.getElementById('location').innerHTML += `<em>Souřadnice GPS nebyly schváleny uživatelem.</em>`;
+          });
+        } else {
+          document.getElementById('location').innerHTML += `<em>Prohlížeč nepodporuje GPS lokaci.</em>`;
+        }
+      })
+      .catch(() => {
+        document.getElementById('location').textContent = "Nepodařilo se získat polohu.";
+      });
+  </script>
+
+</body>
+</html>
