@@ -5,78 +5,52 @@
   <title>ÚŘAD PRO NÁRODNÍ STABILITU</title>
   <style>
     body {
-      margin: 0;
-      padding: 0;
       background-color: #0d0d0d;
       color: #e0e0e0;
       font-family: 'Courier New', monospace;
       text-align: center;
+      padding: 40px;
     }
-
-    header {
-      padding: 40px 20px 20px;
-    }
-
     img {
-      width: 180px;
+      width: 200px;
       margin-bottom: 20px;
     }
-
-    h1 {
-      font-size: 24px;
-      margin: 0;
+    .box {
+      border: 1px solid #444;
+      padding: 25px;
+      background-color: #1a1a1a;
+      max-width: 600px;
+      margin: auto;
     }
-
+    input {
+      background-color: #222;
+      color: #ddd;
+      border: 1px solid #333;
+      padding: 6px 12px;
+      margin-top: 10px;
+    }
     .warning {
       color: red;
       font-weight: bold;
-      margin-top: 10px;
-    }
-
-    .box {
-      background-color: #1a1a1a;
-      border: 1px solid #444;
-      margin: 30px auto;
-      padding: 25px;
-      width: 90%;
-      max-width: 500px;
-    }
-
-    input {
-      padding: 8px 12px;
-      font-size: 14px;
-      border: none;
-      background-color: #222;
-      color: #fff;
-      margin-top: 10px;
-    }
-
-    footer {
-      font-style: italic;
-      margin-top: 60px;
-      font-size: 14px;
-      color: #aaa;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <img src="logo.png" alt="UNS logo">
-    <h1>ÚŘAD PRO NÁRODNÍ STABILITU</h1>
-    <p class="warning">PŘÍSNĚ DŮVĚRNÉ – PŘÍSTUP POUZE PRO OPERATIVCE</p>
-  </header>
+  <img src="logo.png" alt="UNS logo">
+  <h1>ÚŘAD PRO NÁRODNÍ STABILITU</h1>
+  <p class="warning">PŘÍSNĚ DŮVĚRNÉ – PŘÍSTUP POUZE PRO OPERATIVCE</p>
 
   <div class="box">
     <p>Zadejte přístupový kód pro zónu B-7:</p>
-    <input type="password" placeholder="••••••••••••">
-    <p style="margin-top: 20px;">⬤ Stav spojení: <span class="warning">Nestabilní</span></p>
+    <input type="password" placeholder="••••••••••">
+    <p>⬤ Stav spojení: <span class="warning">Nestabilní</span></p>
     <p>⬤ Kód jednotky: <strong>UNS-BESKYDY-042</strong></p>
   </div>
 
-  <footer>
+  <p style="margin-top: 50px; font-style: italic;">
     „Klid je svoboda. Pořádek je bezpečí.“
-  </footer>
+  </p>
 
 </body>
 </html>
