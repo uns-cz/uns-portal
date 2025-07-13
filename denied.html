@@ -3,9 +3,57 @@
 <head>
   <meta charset="UTF-8">
   <title>Přístup Odepřen</title>
+  <style>
+    body {
+      background-color: #0d0d0d;
+      color: #ff3333;
+      font-family: 'Courier New', monospace;
+      text-align: center;
+      padding-top: 100px;
+    }
+
+    .counter {
+      color: #ff6666;
+      margin-top: 20px;
+      font-size: 16px;
+    }
+
+    .btn {
+      margin-top: 40px;
+      padding: 10px 20px;
+      background-color: #111;
+      color: #ff3333;
+      border: 1px solid #ff3333;
+      font-size: 16px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn:hover {
+      background-color: #ff3333;
+      color: #111;
+    }
+  </style>
 </head>
-<body style="background-color:#0d0d0d; color:#f00; font-family:'Courier New'; text-align:center; padding-top:100px;">
+<body>
+
   <h1>⛔ PŘÍSTUP ODEPŘEN</h1>
   <p>Neautorizovaný kód. Pokus o přístup byl zaznamenán.</p>
+
+  <div class="counter">
+    Neúspěšné pokusy o přístup: <span id="failCount">0</span>
+  </div>
+
+  <a class="btn" href="index.html">🔁 Zkusit znovu</a>
+
+  <script>
+    // Increment failed attempt counter using localStorage
+    const count = localStorage.getItem('unsFailCount') || 0;
+    const newCount = parseInt(count) + 1;
+    localStorage.setItem('unsFailCount', newCount);
+    document.getElementById('failCount').textContent = newCount;
+  </script>
+
 </body>
 </html>
